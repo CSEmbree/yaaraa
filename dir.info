@@ -1,17 +1,17 @@
-This directory is the main sound directory. It houses Raraa (Remote Audio Recording and Analysis) code and dependant files like a 'featureplan' used by Yaafe for feature extraction choices. Please read the README after reading the following directory structure:
+This directory is the main sound directory. It houses Yaaraa (Yet Another Audio Recording and Analyzer) code and dependant files like a 'featureplan' used by Yaafe for feature extraction choices. Please read the README after reading the following directory structure:
 
 
 FILES	            :: DESCRIPTION
-README              :: Text file contining all information about Raraa.
+README              :: Text file contining all information about Yaaraa.
 clean_workspace.sh  :: Script to clean out the local 'data/' and 'analysis/' directories.
 featureplan         :: Yaafe feature plan formatted file. These are the features extracted.
 featureplan_filter  :: Yaafe feature plan formatted file. These are the features used in filtering.
-install.sh          :: Install/setup script to prepare Raraa.
-makefile            :: Simple makefile used ran by the 'install.sh' script. Type 'make' to build Raraa.
-raraa.cp            :: The main Remote Audio Recording and Analysis (Raraa) application 
-sound_setting.conf  :: Local config file for Raraa. Is used if no others are found.
+install.sh          :: Install/setup script to prepare Yaaraa.
+makefile            :: Simple makefile used ran by the 'install.sh' script. Type 'make' to build Yaaraa.
+yaaraa.cp           :: The main Remote Audio Recording and Analysis (Yaaraa) application 
+sound_setting.conf  :: Local config file for Yaaraa. Is used if no others are found.
 analysis/           :: Directory where temporary work Raara needs to do (like filtering) is performed.
-data/               :: Directory where finished products from Raraa go. Audio files and features extracted end up here.
+data/               :: Directory where finished products from Yaaraa go. Audio files and features extracted end up here.
 logs/               :: Directory for various log files from installation, crashes, errors, regular output, etc.
-src/                :: Directory for all source code used by Raraa.
+src/                :: Directory for all source code used by Yaaraa.
 test/               :: Direcotry for test scripts and holder for simulate directories 'data_fv/' and 'data_yaafe/'

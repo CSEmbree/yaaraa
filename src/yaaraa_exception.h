@@ -1,16 +1,16 @@
 /*
- * Title:    raraa_exception
+ * Title:    yaaraa_exception
  * Author:   C. Embree
  * Contact:  cse@cameronembree.com
- * Created:  4-DEC-2014
- * Edited:   4-DEC-2014
+ * Created:  04-DEC-2014
+ * Edited:   05-JAN-2015
  * Notes:    Handles various exceptions where we need configuration info
  *
  */
 
 
-#ifndef RARAA_EXCEPTION_H
-#define RARAA_EXCEPTION_H
+#ifndef YAARAA_EXCEPTION_H
+#define YAARAA_EXCEPTION_H
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -43,12 +43,12 @@
 //using namespace std; 
 
 
-class raraa_exception {
+class yaaraa_exception {
   std::string msg;
   config_handler ch;
 
  public:
-  raraa_exception( string s_, config_handler *ch_ ) { 
+  yaaraa_exception( string s_, config_handler *ch_ ) { 
     msg = s_;
     ch = ch_;
   };

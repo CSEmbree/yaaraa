@@ -1,9 +1,9 @@
 /*
- * Title:    raraa
+ * Title:    yaaraa
  * Author:   C. Embree
  * Contact:  cse@cameronembree.com
- * Created:  4-SEP-2014
- * Edited:   23-OCT-2014
+ * Created:  04-SEP-2014
+ * Edited:   05-JAN-2015
  * Notes:    main recording and analysis program overseer. Here is 
  *             where worker classe are organised from. 
  */
@@ -11,7 +11,7 @@
 
 #include "src/utils.h"
 #include "src/filters.h"
-//#include "src/raraa_exception.h"
+//#include "src/yaaraa_exception.h"
 
 #include "src/config_handler.h"
 #include "src/audio_recorder.h"
@@ -20,7 +20,7 @@
 
 //using namespace std;
 
-string n = "**raraa::";
+string n = "**yaaraa::";
 
 
 bool do_filter_feature_extraction( config_handler *ch, audio_recorder *ar ) {
@@ -475,7 +475,7 @@ void warn( string msg, config_handler *ch ) {
 
 
 //////////////////////////////////////////////////////////////////////////////
-// RARAA CORE
+// YAARAA CORE
 //////////////////////////////////////////////////////////////////////////////
 
 int main(int argc, char **argv) {
@@ -797,7 +797,7 @@ int main(int argc, char **argv) {
     }
     
     
-    cerr<<n<<mn<<" WARNING: Raraa core finished: This should never be seen! "<<endl;
+    cerr<<n<<mn<<" WARNING: Yaaraa core finished: This should never be seen! "<<endl;
     
   } catch ( const std::string& e ) {
     

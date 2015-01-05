@@ -165,9 +165,9 @@ fi
 out " -- Create start and stop scripts locally. "
 
 if [ "$DO_COMPILE" = true ] ; then
-    out " -- Build Raraa. "
+    out " -- Build Yaaraa. "
 else 
-    out " -- NOT build Raraa anew"
+    out " -- NOT build Yaaraa anew"
 fi
 
 if [ "$DO_LOCAL" = false ] ; then
@@ -374,15 +374,15 @@ out " === (3/4) STOP - Audio feature extraction envrionment setup  === "
 
 
 
-out " === (4/4) START - Preparing raraa === "
+out " === (4/4) START - Preparing Yaaraa === "
 
-# Prepare to compile Raraa and create start and stop scripts for Raraa
+# Prepare to compile Yaaraa and create start and stop scripts for Yaaraa
 if [ "$DO_COMPILE" = true ]; then
     out "cleaning up old workspace ... "
     #make clean
     out "Done."
     
-    out "Preparing Raraa ... "
+    out "Preparing Yaaraa ... "
     res=`make`
     out "$res"
     out "Done."
@@ -408,7 +408,7 @@ else
 fi
 
 
-# Create a start script to ensure correct envrionment before running Raraa
+# Create a start script to ensure correct envrionment before running Yaraa
 out "Creating 'start' script ... "
 export START_SOUND="start_sound.sh" 
 touch $START_SOUND
@@ -425,7 +425,7 @@ if [ "$YAAFE_EXISTED" = false ]; then
     echo "export PYTHONPATH=\$PYTHONPATH:\$YAAFE/python_packages" >> $START_SOUND
 fi
 echo "echo \$@"                                                   >> $START_SOUND
-echo "(cd \$SOUND_BASE_DIR && ./raraa \$@)"                       >> $START_SOUND
+echo "(cd \$SOUND_BASE_DIR && ./yaaraa \$@)"                      >> $START_SOUND
 
 if [ "$DO_LOCAL" = false ]; then
     cp $START_SOUND $HOME_BIN
@@ -434,14 +434,14 @@ fi
 out "Done."
 
 
-# Create a stop script to ensure correct envrionment before killing Raraa process
+# Create a stop script to ensure correct envrionment before killing Yaaraa process
 out "Creating 'stop' script ... "
 export STOP_SOUND="stop_sound.sh"
 touch $STOP_SOUND
 chmod u+x $STOP_SOUND
 
 echo "#!/bin/bash" > $STOP_SOUND
-echo "pkill raraa" >> $STOP_SOUND
+echo "pkill yaaraa" >> $STOP_SOUND
 
 if [ "$DO_LOCAL" = false ]; then
     cp $STOP_SOUND $HOME_BIN
@@ -469,7 +469,7 @@ out "Done."
 
 
 
-out " === (4/4) STOP - Prepared raraa === "
+out " === (4/4) STOP - Prepared Yaaraa === "
 
 
 

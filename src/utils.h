@@ -2,8 +2,8 @@
  * Title:    utils
  * Author:   C. Embree
  * Contact:  cse@cameronembree.com
- * Created:  5-SEP-2014
- * Edited:   6-SEP-2014
+ * Created:  05-SEP-2014
+ * Edited:   05-JAN-2015
  * Notes:    Contains various generic helper functions needed in 
  *            multiple places. Also houses all includes.
  */
@@ -144,7 +144,7 @@ class utils {
     string errorFileName = "logs/error.log";
 
     myfile.open ( errorFileName.c_str() );
-    myfile << "raraa encountered the following error: " << endl;
+    myfile << "Yaaraa encountered the following error: " << endl;
     myfile << err <<endl;
     myfile.close();
 
@@ -338,7 +338,7 @@ class utils {
     }
     
     // Change the current working directory to root.
-    chdir("/"); //TODO - make this the raraa working directory based on config
+    chdir("/"); //TODO - make this the Yaaraa working directory based on config
     
     
     // Close stdin. stdout and stderr

@@ -157,7 +157,7 @@ The installation script takes the following OPTIONAL arguments:
 
 
 For example, to generate new start/stop scripts but not re-compile
-Raraa and not update the RPi, we can do the following:
+_Yaaraa_ and not update the RPi, we can do the following:
 
 ```bash
   $ ./install -nu -nc
@@ -166,7 +166,7 @@ OR
 ```bash
   $ ./install --noupdate --nocompile
 ```
-The installation script by default compiles raraa (unless told
+The installation script by default compiles _Yaaraa_ (unless told
 otherwise by argument "-nc", but you can always clean and re-make 
 _Yaaraa_ with:
 ```bash
@@ -177,7 +177,7 @@ _Yaaraa_ with:
 *******************************************************************
 ### 3.3 DEPENDANCIES
 *******************************************************************
-raraa uses the software "arecord" and "Yaafe". More information about these 
+_Yaaraa_ uses the software "arecord" and "Yaafe". More information about these 
 libraries can be found in the REFERENCES section. 
 
 All dependancies are installed/updated by the "install.sh" script.
@@ -243,7 +243,7 @@ Config files contain the following operating details
  * Turn audio analyis (audio feature extraction via Yaafe) off. 
  * **DEAFULT: string "off" - filtering is performed**
 * **background - (OPT)** 
- * Turn raraa into a Daemon with "on". 
+ * Turn _Yaaraa_ into a Daemon with "on". 
  * **DEAFULT: string "off" - prints to terminal**
 * **filter - (OPT)** 
  * Turn filtering on/off. 
@@ -428,7 +428,7 @@ with your correct settings, then perform:
 *******************************************************************
 ## 7. REFERENCES
 *******************************************************************
-Whole documentation can be found in the raraa "docs" directory.
+Whole documentation can be found in the _Yaaraa_ "docs" directory.
 
 Depedant libraries documention:
  * arecord
