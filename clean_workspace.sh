@@ -1,7 +1,7 @@
 #!/bin/bash
-cd /home/pi/sounds/analysis
+cd /home/pi/yaaraa/analysis
 rm -r {sound*,rec*} 2> /dev/null
-cd /home/pi/sounds/data
+cd /home/pi/yaaraa/data
 rm -r {sound*,rec*} 2> /dev/null
-cd /home/pi/sounds/data/media
+cd /home/pi/yaaraa/data/media
 rm -r {sound*,rec*} 2> /dev/null

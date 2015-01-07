@@ -70,18 +70,16 @@ bool rm_filter_features( config_handler *ch, audio_recorder *ar) {
 
 
   
-  //CMD SYNTAX: find analysis_dir -type f -not -name audio_fname | xargs rm
+  //CMD SYNTAX: find analysis_dir -not -name 'audio_fname' -name 'ar->get_rec_file_name()*' -delete
   stringstream rmFiltersCmd;
   rmFiltersCmd << "bash -c 'find "
 	       << analysis_dir
-	       << " -type f -not -name "
-	       << "'" << "dir.info" << "'"
-	       << " -not -name "
-	       << "'" << audio_fname<< "'"
-	       << " | xargs rm'";
+	       << " -not -name " << "'" << audio_fname << "'"
+	       << " -name '"<< ar->get_rec_file_name_core() <<"*' -delete"
+	       << "'";
   
-
   //cout<<"TEST: "<<rmFiltersCmd.str()<<endl;
+
 
   
   int ret;
@@ -91,6 +89,8 @@ bool rm_filter_features( config_handler *ch, audio_recorder *ar) {
   } else {
     res = false;
   }
+
+  //  exit(0);//TEST
 
     
   return res;
@@ -474,6 +474,52 @@ void warn( string msg, config_handler *ch ) {
 
 
 
+void set_optional_arg_values( int argc, char **argv, int *dur, int *num, string *config_path, string *config_fname ) {
+
+  string mn="set_optional_arg_values:";
+  string id = "", value = "", curArg = "";
+  int optionSep = -1;
+  
+  // User can set the config file, recording number, and recording duration explicitly with:
+  //  -c=configfileWithPath
+  //  -d=IntDurationInSeconds
+  //  -n=IntNumberRecordings
+  // For example: ./start_sound -d=10 -n=2 -c=../sound_settings.conf <-two 10 second recordings using config file in an above directory
+
+  for(int i = 1; i < argc; i++ ) {
+    curArg = argv[i];
+
+    optionSep = curArg.find( '=' ); //optioname and value are seperated by aan equals sign
+    id    = utils::trim(curArg.substr( 0, optionSep ) );
+    value = utils::trim(curArg.substr( optionSep+1, curArg.size() ) );
+    
+    if( id == "-c" ) {
+      if ( utils::is_file_readable( value ) == true ) {
+	*config_path = utils::get_cwd() + utils::get_directory_path( value );
+	*config_fname = utils::get_base( value );
+      }   
+    } else if ( id == "-d") { 
+      if ( utils::is_pos_int( value ) == true ) {
+	*dur = utils::string_to_number<int>( value );
+      }
+    } else if ( id == "-n" ) { 
+      if ( utils::is_pos_int( value ) == true ) {
+	*num = utils::string_to_number<int>( value );
+      }
+    } else {
+      cout<<n<<mn<<" WARN: invalid optional pair: \""<<id<<"\",\""<<value<<"\""<<endl;
+    }
+    
+  }
+
+  return;
+}
+
+
+
+
+
+
 //////////////////////////////////////////////////////////////////////////////
 // YAARAA CORE
 //////////////////////////////////////////////////////////////////////////////
@@ -501,31 +547,10 @@ int main(int argc, char **argv) {
     string configFname = "cirainbow.conf";
     
     
-    // allow user to choose a specifc config file by argument
-    int numCheck = 0;
+    // allow user to set explicit config file (-c), recording number(-n), and duration(-d) by argument
     if(argc >= 1) {
-      
-      for(int i = 1; i < argc; i++ ) {
-	string curArg = argv[i];
-	
-	// last readable string is assumed to be a config file
-	if ( utils::is_file_readable( curArg ) == true ) {
-	  configPath = utils::get_cwd() + utils::get_directory_path( curArg );
-	  configFname = utils::get_base( curArg );
-	  
-	} else if ( utils::is_pos_int( curArg ) == true && numCheck == 0 ) {
-	  // first pos int found is assumed to be duration
-	  dur = utils::string_to_number<int>( curArg );
-	  numCheck++;
-	  
-	} else if ( utils::is_pos_int( curArg ) == true && numCheck == 1 ) {
-	  // first pos int found is assumed to be number of recordings
-	  numRuns = utils::string_to_number<int>( curArg );
-	  numCheck++;
-	}
-      }
+      set_optional_arg_values( argc, argv, &dur, &numRuns, &configPath, &configFname );
     }
-    
     
     
     // We need a configuration file manager to ask questions about our recording state later
@@ -545,6 +570,8 @@ int main(int argc, char **argv) {
     } 
     if( ch.get_background() == true ) utils::daemonize();
     
+
+
     // User requested number of recordings and duration take presidence over config file settings
     if( dur     != -1 ) ch.set_rec_duration( dur );
     if( numRuns != -1 ) ch.set_rec_number( numRuns );
