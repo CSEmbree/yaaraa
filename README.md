@@ -400,6 +400,22 @@ Recordings are started after a config file is available with:
   $ ./start_sound.sh
 ```
 
+Optional start script parameters take precedence over whatever config 
+file settings are read. Options include:
+* **-d=**
+ * duration of recordings in seconds
+* **-n=**
+ * number of recordings 
+* **-c=**
+ * config file with path
+
+For example, the following command will make 5 recordings of whatever 
+duration the config file "../my_settings.conf" specifies.
+```bash
+./start_sound.sh -n=5 -c=../my_settings.conf
+```
+
+
 *******************************************************************
 ### 4.4 STOP RECORDING
 *******************************************************************
