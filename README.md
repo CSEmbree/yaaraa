@@ -138,6 +138,8 @@ The installation script is defined as follows:
           [-nu|--noupdate]
           [-c|--compile]
           [-nc|--nocompile]
+          [-tf|--testframework]
+          [-ntf|--notestframework]
 ```
 
 The installation script takes the following OPTIONAL arguments:
@@ -154,6 +156,11 @@ The installation script takes the following OPTIONAL arguments:
  * Turns on installation job of cleaning and remaking the local _Yaaraa_ code.
 * **-nc|--nocompile)** 
  * Turns off DEFAULT installation job of cleaning and remaking the local _Yaaraa_ code.
+* **-tf|--testframework)** 
+ * Turns on downloading of the GoogleTest framework for various tests. gtest is only needed for testing and is not part of the standard Yaara package.
+* **-ntf|--notestframework)** 
+ * Turns off downloading of GoogleTest framework. This flag is OFF by default because gtest is not needed by Yaaraa, only for testing.
+
 
 
 For example, to generate new start/stop scripts but not re-compile
