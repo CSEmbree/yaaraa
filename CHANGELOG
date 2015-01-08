@@ -1,0 +1,26 @@
+CHANGELOG for Yaaraa
+========================================================================
+
+2015-01-07  Cameron Embree <csembree@gmail.com>     
+
+     * yaaraa.cpp: Fixed bug where deleting of analysis directory 
+     temproary files for one recording was deleting ALL tmp files for 
+     all recordings. In other words, all analysis of recordings after 
+     the first were not happening because all recording files were 
+     getting deleted after the first run.
+
+     * install.sh: Now includes installation phase for GoogleTest
+     framework. this framwork is installed to $SOUND_BASE_DIR/test/gtest
+
+     * /test/gtest/dir.info: Added directory info file
+
+2015-01-05  Cameron Embree <csembree@gmail.com>
+
+     * Updated all files from origional Capstone Raraa to Yaaraa format
+
+     * READEME.md: Changed to markdown format from origonal plaintext
+     README file.
+
+
+There is no Copyright. Distribute and use Yaaraa but please reference 
+the gitrepo "https://github.com/CSEmbree/yaaraa" and @csembree.
