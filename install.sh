@@ -17,6 +17,7 @@ DO_UPDATE=true
 DO_COMPILE=true
 DO_VERBOSE=false
 DO_OUT=true
+DO_TEST_FRAMEWORK=false
 
 # error code types
 SOUND_ERR_TYPE=-1
@@ -144,6 +145,14 @@ do
 	    DO_VERBOSE=true
 	    shift
 	    ;;
+	-tf|--testframework)
+	    DO_TEST_FRAMEWORK=true
+	    shift
+	    ;;
+	-ntf|--notestframework)
+	    DO_TEST_FRAMEWORK=false
+	    shift
+	    ;;
 	*)
     # unknown option
 	    out "WARNING: Unrecognized argument '$key' !"
@@ -162,6 +171,10 @@ if [ "$DO_UPDATE" = true ] ; then
     out " -- Update dependant libraries: $DEPENDANT_LIBS"
 fi
 
+if [ "$DO_TEST_FRAMEWORK" = true ] ; then
+    out " -- Download and prep test framework. "
+fi
+
 out " -- Create start and stop scripts locally. "
 
 if [ "$DO_COMPILE" = true ] ; then
@@ -173,6 +186,7 @@ fi
 if [ "$DO_LOCAL" = false ] ; then
     out " -- Copy start and stop scripts to '$HOME_BIN'. "
 fi
+
 out "************************************************"
 
 
@@ -366,6 +380,39 @@ out "PATH = $PATH"
 out "LD_LIBRARY_PATH = $LD_LIBRARY_PATH"
 out "PYTHONPATH = $PYTHONPATH"
 out "Done."
+
+
+# Prep test framework to run various tests later
+if [ "$DO_TEST_FRAMEWORK" = true ] ; then
+    
+    # Move to test framework local installation location
+    cd $SOUND_BASE_DIR/test/gtest/
+    
+    # Ensure it was not already built before downloading and installing it (again)
+    if [ ! -f built ]; then
+	out "Downloading and building test framework ... "
+	wget http://googletest.googlecode.com/files/gtest-1.7.0.zip 
+	mv gtest-1.7.0.zip test/gtest/
+	cd test/gtest/
+	unzip gtest-1.7.0.zip
+	cd gtest-1.7.0
+	./configure
+	make
+	out "Done."
+	
+	out "Installing test framework headers to system ... "
+	sudo cp -a include/gtest /usr/include
+	sudo cp -a lib/.libs/* /usr/lib/
+	out "Done."
+	
+	out "Updating cache of linker and checking implicitely if GNU Linker knows libs"
+	sudo ldconfig -v | grep gtest
+	out "Done."
+	touch built # let us know if the test framework has been built in the future
+    fi
+    
+    cd $SOUND_BASE_SIR
+fi
 
 out " === (3/4) STOP - Audio feature extraction envrionment setup  === "
 

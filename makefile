@@ -14,6 +14,8 @@ all: yaaraa
 yaaraa: $(OBJS)
 	$(CXX) $(DEBUG) -o  $@ $(OBJS) $(LDLIBS) 
 
+#test: -lgtest
+
 depend: .depend
 
 .depend: $(SRCS)
