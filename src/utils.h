@@ -121,10 +121,10 @@ class utils {
   static bool is_pos_int( const string &line ) {
     bool res = true;
 
-    if (line[0] == '0')  {
-      res = true;
-    } else  {
-      res = atoi( line.c_str() );
+    int num = atoi( line.c_str() );
+
+    if( num < 0) {
+      res = false;
     }
 
     return res;
