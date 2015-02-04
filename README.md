@@ -227,7 +227,7 @@ at least two sections: NODE_INFO and SOUNDS of the form:
 ```
 
 Config files contain the following operating details
-(Where **(REQ)** means soemthing is **Required** in config file and **(OPT)** means **Optional** in config file) :
+(Where **(REQ)** means something is **Required** in config file and **(OPT)** means **Optional** in config file) :
 * **recordingduration - (REQ)** 
  * Duration of each recoding in seconds 
 * **recordingnumber - (REQ)** 
@@ -238,7 +238,7 @@ Config files contain the following operating details
  * recording extention. 
  * **DEFAULT is ".wav"**
 * **outputform - (REQ)** 
- * Either output is plan Yaafe using "YAAFE" or output is a json file using "FORMATTED".
+ * Either output is plan Yaafe using "FILES" or output is a json file using "FORMATTED".
  * **DEFAULT: string "FILES"**
 * **outputtypeid - (OPT)** 
  * The sensor output ID used for JSON formatted output in data directory. 
@@ -319,13 +319,13 @@ EX 1: Consider the following config file (Generic example):
   recordingprefix = rec_
   samplerate = 44100
   datalocation = /home/pi/data/
-  outputform = YAAFE
+  outputform = FILES
 ```
 Two recordings of duration 3 seconds at a sample rate of 44100Hz
 will be made. Each recording will be saved as a ".wav" file with the
 prefix "rec_". Filtering is off, so extracted audio data from Yaafe, 
 directed by the local 'featureplan' file, and recordings are saved 
-to the directory called "/home/pi/data/". All output is sent to 
+directly to the directory "/home/pi/data/". All output is sent to 
 stdout because background is "off".
 
 
@@ -340,14 +340,14 @@ EX 2: Consider the following config file (Audio analysis, no Filtering):
   recordingprefix = rec_
   samplerate = 44100
   datalocation = /home/pi/data/
-  outputform = FV
+  outputform = WRAPPED
 ```
 One recording of duration 5 seconds at a sample rate of 44100Hz
 will be made. The recording will be saved as a ".wav" file with the
 prefix "rec_". These recordings are saved to
 the directory called "/home/pi/data/". Filtering is NOT perfomered by
-deafult because it is not turned "on". Output from YAAFE and also
-goes to "home/pi/data/" directory but in the "FV" form (an audio 
+deafult because it is not turned "on". Output from "FILES" and also
+goes to "home/pi/data/" directory but in the "WRAPPED" form (an audio 
 file and a single json file containing all the features extracted 
 with Yaafe). Everything is done in the background as a daemon.
 
@@ -375,7 +375,9 @@ background is not specified.
 *******************************************************************
 ### 4.2 FEATURE PLAN (AUDIO ANALYSIS)
 *******************************************************************
-The Yaafe software used for audio analysis and filtering uses a "featureplan" file to determine what to extract from a recording. Details about the available feature's in a feature plan are here:
+The Yaafe software used for audio analysis and filtering uses a 
+"featureplan" file to determine what to extract from a recording. 
+Details about the available feature's in a feature plan are here:
 
   http://yaafe.sourceforge.net/features.html
 
