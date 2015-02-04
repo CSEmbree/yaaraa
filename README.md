@@ -471,3 +471,9 @@ Depedant libraries documention:
 - [ ] test filter for different features from YAAFE
 - [ ] Update install script for mac? (currently only Rpi, Raspbian supported)
 - [ ] Finish working filter example (consider clapping).
+- [x] Add unit framework to project (EDIT: Using GoogleTest) **DONE:Feb 3, 2015**
+- [x] Create first examples of unit tests **DONE:Feb 3, 2015**
+- [ ] Create Unit tests for config_handler.cpp
+- [ ] Create Unit tests for audio_recorder.cpp
+- [ ] Create Unit tests for utils.h.cpp
+- [ ] Change Yaafe calls from Python to C++
